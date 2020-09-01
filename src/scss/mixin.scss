@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+@function font-size($size) {
+  @return $size / 2px;
+}
+
+@mixin flex($direction:row, $mAxis:null, $cAxis:null) {
+  display: flex;
+  @if $mAxis {
+    justify-content: $mAxis;
+  }
+  @if $cAxis {
+    align-items: $cAxis;
+  }
+}
+
+@mixin ellipse($n:1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-display: box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $n;
+}

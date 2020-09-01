@@ -1,0 +1,101 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+html,body,#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* 公共样式 start */
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.flex {
+  @include flex();
+}
+
+@for $i from 1 through 12 {
+  .flex-#{$i} {
+    flex: $i;
+  }
+}
+
+$general-width: 50,80,100;
+@each $i in $general-width {
+  .width-#{$i} {
+    width: $i * 1%;
+  }
+  .height-#{$i} {
+    height: $i * 1%;
+  }
+}
+
+$pdmd-sizes: 2,4,6,8,10,12,20;
+@each $i in $pdmd-sizes {
+  .p-l-#{$i} {
+    padding-left: $i * 1px;
+  }
+  .p-t-#{$i} {
+    padding-top: $i * 1px;
+  }
+  .p-r-#{$i} {
+    padding-right: $i * 1px;
+  }
+  .p-b-#{$i} {
+    padding-bottom: $i * 1px;
+  }
+  .m-t-#{$i} {
+    margin-top: $i * 1px;
+  }
+  .m-l-#{$i} {
+    margin-left: $i * 1px;
+  }
+  .m-r-#{$i} {
+    margin-right: $i * 1px;
+  }
+  .m-b-#{$i} {
+    margin-bottom: $i * 1px;
+  }
+}
+
+$font-sizes: 10,12,14,16,20,24,28,30;
+@each $i in $font-sizes {
+  .f-s-#{$i} {
+    font-size: $i * 1px;
+  }
+}
+
+.color-white {
+  color: #fff;
+}
+.color-black {
+  color: #000;
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+
+/* 公共样式 end */
