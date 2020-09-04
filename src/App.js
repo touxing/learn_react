@@ -10,6 +10,7 @@ import './scss/common.scss'
 import './App.scss'
 
 function getRouterByRoutes(routes) {
+  console.log('roeuts', routes)
   const renderedRoutesList = []
   const renderRoutes = (routes, parentPath) => {
     Array.isArray(routes) &&
@@ -27,10 +28,15 @@ function getRouterByRoutes(routes) {
         }
         if (component) {
           renderedRoutesList.push(
-            <Route key={`${parentPath}${path}`} exact component={component} />
+            <Route
+              key={`${parentPath}${path}`}
+              exact
+              path={`${parentPath}${path}`}
+              component={component}
+            />
           )
         }
-        if(Array.isArray(children) && children.length > 0) {
+        if (Array.isArray(children) && children.length > 0) {
           renderRoutes(children, path)
         }
       })
@@ -43,9 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <Router history={history}>
-        <Switch>
-          {getRouterByRoutes(routes)}
-        </Switch>
+        <Switch>{getRouterByRoutes(routes)}</Switch>
       </Router>
     )
   }
