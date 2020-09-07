@@ -1,60 +1,36 @@
+/* eslint-disable */
+import React from 'react'
 import { TabBar } from 'antd-mobile'
+import { Route, Redirect } from 'react-router'
+import { routes } from '@/routes'
 
-class App extends React.Component {
+class Tabbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTab: 'redTab',
+      selectedPath: props.history.location.pathname || '/home',
       hidden: false,
       fullScreen: false,
     }
   }
 
-  renderContent(pageText) {
-    return (
-      <div
-        style={{
-          backgroundColor: 'white',
-          height: '100%',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ paddingTop: 60 }}>
-          Clicked “{pageText}” tab， show “{pageText}” information
-        </div>
-        <a
-          style={{
-            display: 'block',
-            marginTop: 40,
-            marginBottom: 20,
-            color: '#108ee9',
-          }}
-          onClick={(e) => {
-            e.preventDefault()
-            this.setState({
-              hidden: !this.state.hidden,
-            })
-          }}
-        >
-          Click to show/hide tab-bar
-        </a>
-        <a
-          style={{ display: 'block', color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault()
-            this.setState({
-              fullScreen: !this.state.fullScreen,
-            })
-          }}
-        >
-          Click to switch fullscreen
-        </a>
-      </div>
-    )
+  renderContent(path) {
+    return routes
+      .filter((route) => route.path === path)
+      .map((item) => {
+        return (
+          <Route
+            key={`${item.path}`}
+            exact
+            path={`${path}`}
+            component={item.component}
+          />
+        )
+      })
   }
 
-  iconComponent(url, key) {
-    if (key === 'mine') {
+  iconComponent(url, path) {
+    if (path === '/mine') {
       return { uri: url }
     }
     return (
@@ -67,15 +43,15 @@ class App extends React.Component {
       />
     )
   }
-  handleBadge(key) {
-    switch (key) {
-      case 'discovery':
+  handleBadge(path) {
+    switch (path) {
+      case '/discovery':
         return 'new'
         break
-      case 'order':
+      case '/order':
         return 1
         break
-      case 'mine':
+      case '/mine':
         break
       default:
         break
@@ -86,19 +62,20 @@ class App extends React.Component {
     return (
       <TabBar.Item
         title={item.title}
-        key={item.key}
-        icon={this.iconComponent(item.icon, item.key)}
-        selectedIcon={this.iconComponent(item.selectedIcon, item.key)}
-        selected={this.state.selectedTab === item.selectedTab}
-        badge={this.handleBadge(item.key)}
+        key={item.path}
+        icon={this.iconComponent(item.icon, item.path)}
+        selectedIcon={this.iconComponent(item.selectedIcon, item.path)}
+        selected={this.state.selectedPath === item.path}
+        badge={this.handleBadge(item.path)}
         onPress={() => {
           this.setState({
-            selectedTab: item.selectedTab,
+            selectedPath: item.path,
           })
+          this.props.history.push(item.path)
         }}
         data-seed={item.seed}
       >
-        {this.renderContent(item.title)}
+        {this.renderContent(this.state.selectedPath)}
       </TabBar.Item>
     )
   }
@@ -109,8 +86,7 @@ class App extends React.Component {
     const tabBarList = [
       {
         title: '美团',
-        key: 'meituan',
-        selectedTab: 'blueTab',
+        path: '/home',
         seed: 'logId',
         icon:
           'https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg',
@@ -119,8 +95,7 @@ class App extends React.Component {
       },
       {
         title: '发现',
-        key: 'discovery',
-        selectedTab: 'redTab',
+        path: '/discovery',
         seed: 'logId1',
         icon:
           'https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg',
@@ -129,8 +104,7 @@ class App extends React.Component {
       },
       {
         title: '订单',
-        key: 'order',
-        selectedTab: 'greenTab',
+        path: '/order',
         icon:
           'https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg',
         selectedIcon:
@@ -138,8 +112,7 @@ class App extends React.Component {
       },
       {
         title: '我的',
-        key: 'mine',
-        selectedTab: 'yellowTab',
+        path: '/mine',
         icon:
           'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg',
         selectedIcon:
@@ -162,3 +135,5 @@ class App extends React.Component {
     )
   }
 }
+
+export default Tabbar
