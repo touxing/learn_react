@@ -1,9 +1,10 @@
 import React from 'react'
+import TopTitle from './components/TopTitle'
 
 class Home extends React.Component {
   render() {
     return (
-      <div>Home</div>
+      <TopTitle />
     )
   }
 }

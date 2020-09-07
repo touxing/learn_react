@@ -14,6 +14,7 @@
 
 @mixin flex($direction:row, $mAxis:null, $cAxis:null) {
   display: flex;
+  flex-direction: $direction;
   @if $mAxis {
     justify-content: $mAxis;
   }
