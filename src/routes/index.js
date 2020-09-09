@@ -18,6 +18,10 @@ const Mine = Loadable({
   loader: () => import('@/pages/Mine'),
   loading: Loading,
 })
+const NotFound = Loadable({
+  loader: () => import('@/components/NotFound'),
+  loading: null,
+})
 
 export const history = createBrowserHistory()
 
@@ -41,5 +45,9 @@ export const routes = [
   {
     path: '/mine',
     component: Mine,
+  },
+  {
+    path: '*',
+    component: NotFound,
   },
 ]
