@@ -20,7 +20,7 @@ const Mine = Loadable({
 })
 const NotFound = Loadable({
   loader: () => import('@/components/NotFound'),
-  loading: null,
+  loading: () => {},
 })
 
 export const history = createBrowserHistory()

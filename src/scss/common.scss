@@ -70,6 +70,9 @@ $general-width: 50,80,100;
 
 $pdmd-sizes: 2,4,6,8,10,12,20;
 @each $i in $pdmd-sizes {
+  .p-#{$i} {
+    padding: $i * 1px;
+  }
   .p-l-#{$i} {
     padding-left: $i * 1px;
   }
@@ -81,6 +84,9 @@ $pdmd-sizes: 2,4,6,8,10,12,20;
   }
   .p-b-#{$i} {
     padding-bottom: $i * 1px;
+  }
+  .m-#{$i} {
+    margin: $i * 1px;
   }
   .m-t-#{$i} {
     margin-top: $i * 1px;
