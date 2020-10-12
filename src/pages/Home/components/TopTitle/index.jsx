@@ -37,12 +37,12 @@ class TopTitle extends React.Component {
       }
     ]
     return (
-      <div className="flex">
+      <div className="flex p-t-10 p-b-12">
         {toolbarList.map((item,index) => {
           return (
             <Fragment key={item.icon}>
-              <div>
-                <SVGSymbol name={item.icon} fontSize={24} />
+              <div className="flex-1 flex-column flex-center">
+                <SVGSymbol name={item.icon} fontSize={40} />
                 <span>{item.name}</span>
               </div>
             </Fragment>

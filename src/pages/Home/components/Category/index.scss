@@ -1,0 +1,15 @@
+.swiper-slide-item {
+  height: 200px;
+}
+.slide-item {
+  flex: 0 1 20%;
+  justify-self: flex-start;
+}
+
+.swiper-pagination-custom  {
+  bottom: 0;
+}
+
+.swiper-container-custom {
+  padding-bottom: 16px;
+}

@@ -51,10 +51,24 @@ code {
 .align-items-center {
   align-items: center;
 }
+.flex-center {
+  @extend .justify-content-center;
+  @extend .align-items-center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
 @for $i from 1 through 12 {
   .flex-#{$i} {
     flex: $i;
+  }
+}
+
+$abs-zero: 'top', 'bottom', 'left', 'right';
+@each $i in $abs-zero {
+  .#{$i}-0 {
+    #{$i}: 0
   }
 }
 
@@ -68,7 +82,7 @@ $general-width: 50,80,100;
   }
 }
 
-$pdmd-sizes: 2,4,6,8,10,12,20;
+$pdmd-sizes: 2,4,6,8,10,12,16,18,20;
 @each $i in $pdmd-sizes {
   .p-#{$i} {
     padding: $i * 1px;
