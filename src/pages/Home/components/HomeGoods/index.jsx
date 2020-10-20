@@ -1,6 +1,7 @@
 import React from 'react'
-import { Tabs, WhiteSpace } from 'antd-mobile'
+import { Tabs, WhiteSpace, WingBlank } from 'antd-mobile'
 import { StickyContainer, Sticky } from 'react-sticky'
+import GoodsCard from '../GoodsCard'
 
 function renderTabBar(props) {
   return (
@@ -14,54 +15,53 @@ function renderTabBar(props) {
   )
 }
 const tabs = [
-  { title: 'First Tab', key: 't1' },
-  { title: 'Second Tab', key: 't2' },
-  { title: 'Third Tab', key: 't3' },
+  { title: '猜你喜欢', key: 't1' },
+  { title: '今日特价', key: 't2' },
+  { title: '超好评', key: 't3' },
 ]
 
-const TabExample = () => {
+const tabsKeys = Object.values(tabs).map((item) => item.key)
+
+function renderTabContent(key) {
+  return (
+    <React.Fragment>
+      <GoodsCard />
+      <GoodsCard />
+      <GoodsCard />
+      <GoodsCard />
+    </React.Fragment>
+  )
+}
+
+export default function TabExample() {
   return (
     <div>
       <WhiteSpace />
       <StickyContainer>
-        <Tabs tabs={tabs} initialPage={'t2'} renderTabBar={renderTabBar}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '250px',
-              backgroundColor: '#fff',
-            }}
-          >
-            Content of first tab
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '250px',
-              backgroundColor: '#fff',
-            }}
-          >
-            Content of second tab
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '250px',
-              backgroundColor: '#fff',
-            }}
-          >
-            Content of third tab
-          </div>
+        <Tabs
+          className="bg-transparent"
+          tabs={tabs}
+          initialPage={'t1'}
+          renderTabBar={renderTabBar}
+          onChange={(tab, index) => {
+            console.log('onChange', index, tab)
+          }}
+          onTabClick={(tab, index) => {
+            console.log('onTabClick', index, tab)
+          }}
+        >
+          <WingBlank>
+            {tabsKeys.map((item) => {
+              return (
+                <div key={item} className="flex justify-content-between flex-wrap">
+                  {renderTabContent(item)}
+                </div>
+              )
+            })}
+          </WingBlank>
         </Tabs>
       </StickyContainer>
       <WhiteSpace />
     </div>
   )
 }
-export default TabExample
