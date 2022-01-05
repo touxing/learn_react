@@ -160,5 +160,10 @@ $font-sizes: 8,10,12,14,16,20,24,28,30;
  @include clearfix();
 }
 
+@for $i from 1 through 3 {
+  .text-over-#{$i} {
+    @include ellipse($i);
+  }
+}
 
 /* 公共样式 end */

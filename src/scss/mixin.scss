@@ -24,9 +24,9 @@
 }
 
 @mixin ellipse($n:1) {
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-display: box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $n;
 }

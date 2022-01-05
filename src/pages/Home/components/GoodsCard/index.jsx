@@ -1,17 +1,17 @@
 import React from 'react'
+import './index.scss'
 
 export default function (props) {
+  let { item = {} } = props
   return (
     <div
-      style={{
-        width: '166px',
-      }}
+     className="goods-box"
     >
-      <img src="/img/banner1.jpg" style={{ width: '100%', height: '150px' }} alt="goods"/>
-      <div>标题标题标题</div>
-      <div>评分信息</div>
-      <div>满减，满减</div>
-      <div>人均&yen;|月销4888</div>
+      <img className="goods-img" style={{height: item.height+'px'}} src="/img/banner1.jpg" alt="goods"/>
+      <div className="m-b-8 f-s-16 color-black text-over-2 home-top-titl">{ item.title }</div>
+      <div className="m-b-6 f-s-12 color-6 text-over-1">评分信息</div>
+      <div className="m-b-6 f-s-12 color-9">人均{item.perCapita}&yen; | 月销{item.salePerMonth}</div>
+      <div className="f-s-12 color-3 text-over-1">满减，满减</div>
     </div>
   )
 }
