@@ -37,18 +37,26 @@ export default class HomeGoods extends React.Component{
     }
   }
   componentDidMount() {
-    this.initWaterFall()
+    window.addEventListener('load', this.componentLoaded)
+    setTimeout(() => {
+      this.initWaterFall()
+    }, 1000);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.initWaterFall)
+  }
+  componentLoaded = () => {
+    console.log('componentLoaded')
   }
   screenChange = () => {
     window.addEventListener('resize', this.initWaterFall)
   }
   initWaterFall = () => {
+    console.log('initWaterFall')
     // 定义每一列之间的间隙
     let { gap, currentKey } = this.state
     let waterFallBox = this.waterFallBoxRefList[currentKey]
+    console.log(waterFallBox);
     // let waterFallBox = document.querySelector('.waterFall')
     // 1. 确定列数 = 容器宽度 / 图片宽度
     let domBox = waterFallBox.getBoundingClientRect()
@@ -61,7 +69,6 @@ export default class HomeGoods extends React.Component{
 
     console.log(items);
     for(let i = 0, len=items.length; i < len; i++) {
-      console.log('children height', items[i].offsetHeight);
       if(i < column) {
         // 2. 确定第一行
         // items[i].style.top = 0
@@ -86,7 +93,6 @@ export default class HomeGoods extends React.Component{
         imgList.push({
           top: arr[index] + gap,
           left: (itemWidth + gap) * index
-          // left: imgList[index].left + gap
         })
 
         // 5. 修改最小列的高度
@@ -162,7 +168,7 @@ export default class HomeGoods extends React.Component{
             <WingBlank>
               {tabsKeys.map((item, index) => {
                 return (
-                  <div key={item} className="relative waterFall" style={{height: '100vh'}} ref={ref => this.waterFallBoxRefList[item] = ref}>
+                  <div key={item} className="relative waterFall" style={{height: '100vh'}} ref={element => this.waterFallBoxRefList[item] = element}>
                     {this.renderTabContent(item)}
                   </div>
                 )
