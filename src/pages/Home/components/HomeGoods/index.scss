@@ -1,5 +1,16 @@
+.waterfall-wrap {
+  width: calc(100% - 20px);
+  margin: 0 auto;
+}
 .waterfall-item {
-  position: absolute;
+  display: flex;
+  justify-content: center;
   width: 166px;
-  box-shadow: 2px 2px 2px #999;
+}
+.goods-box {
+  margin: 8px 0px;
+  padding: 0 0 8px 0px;
+  box-shadow: 0 8px 10px rgba(0,0,0, 0.6);
+  background-color: #fff;
+  border-radius: 6px;
 }

@@ -87,6 +87,14 @@ $pdmd-sizes: 2,4,6,8,10,12,14,16,18,20;
   .p-#{$i} {
     padding: $i * 1px;
   }
+  .p-x-#{$i} {
+    padding-left: $i * 1px;
+    padding-right: $i * 1px;
+  }
+  .p-y-#{$i} {
+    padding-top: $i * 1px;
+    padding-bottom: $i * 1px;
+  }
   .p-l-#{$i} {
     padding-left: $i * 1px;
   }
@@ -101,6 +109,14 @@ $pdmd-sizes: 2,4,6,8,10,12,14,16,18,20;
   }
   .m-#{$i} {
     margin: $i * 1px;
+  }
+  .m-x-#{$i} {
+    margin-left: $i * 1px;
+    margin-right: $i * 1px;
+  }
+  .m-y-#{$i} {
+    margin-top: $i * 1px;
+    margin-bottom: $i * 1px;
   }
   .m-t-#{$i} {
     margin-top: $i * 1px;
