@@ -38,9 +38,9 @@ jobs:
       - name: 部署文档
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          publish_dir: build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
 
 
   # deploy:
@@ -57,5 +57,5 @@ jobs:
   #       uses: JamesIves/github-pages-deploy-action@releases/v3
   #       with:
   #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         branch: gh-pages
-  #         publish_dir: ./build
+  #         BRANCH: gh-pages
+  #         FOLDER: ./build
