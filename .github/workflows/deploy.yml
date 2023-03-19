@@ -35,29 +35,9 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm run build
-      # - name: 部署文档
-      #   uses: JamesIves/github-pages-deploy-action@releases/v3
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     BRANCH: gh-pages
-      #     FOLDER: build
-
-
-
-  deploy:
-    name: Deploy to gh-pages
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: 部署文档
+        uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
-          fetch-depth: 0
-      - name: Build and deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: pnpm && pnpm run build
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
