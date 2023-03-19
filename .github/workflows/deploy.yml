@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
         with:
           fetch-depth: 0
           # 如果你文档需要 Git 子模块，取消注释下一行
@@ -35,27 +35,29 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm run build
-      - name: 部署文档
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      # - name: 部署文档
+      #   uses: JamesIves/github-pages-deploy-action@master
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     BRANCH: gh-pages
+      #     FOLDER: build
+
+
+
+  deploy:
+    name: Deploy to gh-pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
         with:
+          fetch-depth: 0
+      - name: Build and deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build
-
-
-  # deploy:
-  #   name: Deploy to gh-pages
-  #   needs: build
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - name: 部署文档
-  #       uses: JamesIves/github-pages-deploy-action@releases/v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         BRANCH: gh-pages
-  #         FOLDER: ./build
+          BUILD_SCRIPT: pnpm && pnpm run build
