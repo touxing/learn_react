@@ -2,6 +2,13 @@
   "name": "meituan",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://touxing.github.io/learn_meituan",
+  "scripts": {
+    "start": "react-app-rewired --openssl-legacy-provider start",
+    "build": "react-app-rewired --openssl-legacy-provider build",
+    "test": "react-app-rewired --openssl-legacy-provider test --env=jsdom",
+    "eject": "react-app-rewired --openssl-legacy-provider eject --env=jsdom"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -20,12 +27,6 @@
     "react-sticky": "^6.0.3",
     "redux": "^4.0.5",
     "swiper": "^6.3.3"
-  },
-  "scripts": {
-    "start": "react-app-rewired --openssl-legacy-provider start",
-    "build": "react-app-rewired --openssl-legacy-provider build",
-    "test": "react-app-rewired --openssl-legacy-provider test --env=jsdom",
-    "eject": "react-app-rewired --openssl-legacy-provider eject --env=jsdom"
   },
   "eslintConfig": {
     "extends": "react-app"
