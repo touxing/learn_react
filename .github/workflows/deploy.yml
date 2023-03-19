@@ -53,9 +53,14 @@ jobs:
       with:
         name: production-files
         path: ./build
+
+    - name: Add git safe files
+      run: |
+        ls -R
+        pwd
+        git config --global --add safe.directory /github/workspace
     - name: 部署文档
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        # 这是文档部署到的分支名称
-        branch: gh-pages
-        folder: ./build
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
