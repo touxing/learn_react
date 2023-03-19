@@ -7,7 +7,8 @@ on:
       - master
 
 jobs:
-  deploy-gh-pages:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,26 +24,38 @@ jobs:
           version: 7
           run_install: true
 
-
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: pnpm
 
-
-      - name: 构建文档
+      - name: 构建
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm run build
-      - name: Download文档
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./build
+
+
+jobs:
+  deploy:
+    name: Deploy to gh-pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download文档
         uses: actions/download-artifact@v3
         with:
           name: production-files
           path: ./build
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
