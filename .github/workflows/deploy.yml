@@ -42,7 +42,6 @@ jobs:
           path: ./build
 
 
-jobs:
   deploy:
     name: Deploy to gh-pages
     needs: build
