@@ -2,7 +2,7 @@
   "name": "meituan",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://touxing.github.io/learn_meituan",
+  "homepage": "https://touxing.github.io/learn_react/",
   "scripts": {
     "start": "react-app-rewired --openssl-legacy-provider start",
     "build": "react-app-rewired --openssl-legacy-provider build",
