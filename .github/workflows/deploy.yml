@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           # 如果你文档需要 Git 子模块，取消注释下一行
@@ -36,7 +36,7 @@ jobs:
         run: |
           pnpm run build
       # - name: 部署文档
-      #   uses: JamesIves/github-pages-deploy-action@master
+      #   uses: JamesIves/github-pages-deploy-action@releases/v3
       #   with:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     BRANCH: gh-pages
@@ -51,11 +51,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Build and deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
