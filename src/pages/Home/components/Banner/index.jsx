@@ -27,8 +27,8 @@ export default function () {
           clickable: true,
           modifierClass: 'swiper-pagination-custom ',
         }}
-        onSlideChange={() => console.log('banner slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log('banner slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
         containerModifierClass="swiper-container-custom "
       >
         {banners.map((item, index) => {

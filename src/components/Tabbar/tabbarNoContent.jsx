@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Children } from 'react'
 import { TabBar } from 'antd-mobile'
-import { Route, Redirect, Switch } from 'react-router'
+import { Route, Redirect, Switch, withRouter } from 'react-router'
 import { routes, basename, history } from '@/routes'
 
 const pathMap = new Map()
@@ -49,32 +49,10 @@ class Tabbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedPath: props.history.location.pathname || pathMap.get('home'),
+      selectedPath: history.location.pathname || pathMap.get('home'),
       hidden: false,
       fullScreen: false,
     }
-  }
-
-  renderContent(path) {
-    return (
-      <React.Fragment>
-        {routes
-          .filter((route) => route.path === path)
-          .map((item) => {
-            return (
-              <React.Fragment key={`${item.path}`}>
-                {item.path}
-                <Route
-                  key={`${item.path}`}
-                  exact
-                  path={`${path}`}
-                  component={item.component}
-                />
-              </React.Fragment>
-            )
-          })}
-      </React.Fragment>
-    )
   }
 
   iconComponent(url, path) {
@@ -119,23 +97,23 @@ class Tabbar extends React.Component {
           this.setState({
             selectedPath: item.path,
           })
-          // this.props.history.replace(item.path)
           history.replace(item.path)
         }}
         data-seed={item.seed}
       >
-        {this.renderContent(this.state.selectedPath)}
+        {item.path}
       </TabBar.Item>
     )
   }
 
   render() {
     return (
-      <div className={this.state.fullScreen ? 'fullScreen' : 'height-100'}>
+      <div className={this.state.fullScreen ? 'fullScreen' : 'auto'}>
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
+          noRenderContent={true}
           hidden={this.state.hidden}
         >
           {tabBarList.map((tabBar, index) => {

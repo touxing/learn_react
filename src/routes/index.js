@@ -2,48 +2,59 @@ import Loadable from 'react-loadable'
 import { createBrowserHistory } from 'history'
 import Loading from '@/components/Loading'
 
-const Home = Loadable({
+export let basename = process.env.PUBLIC_URL
+console.log(`🚀 ~ file: index.js:6 ~ basename:`, basename)
+
+export const Home = Loadable({
   loader: () => import('@/pages/Home'),
   loading: Loading,
 })
-const Discovery = Loadable({
+export const Discovery = Loadable({
   loader: () => import('@/pages/Discovery'),
   loading: Loading,
 })
-const Order = Loadable({
+export const Order = Loadable({
   loader: () => import('@/pages/Order'),
   loading: Loading,
 })
-const Mine = Loadable({
+export const Mine = Loadable({
   loader: () => import('@/pages/Mine'),
   loading: Loading,
 })
-const NotFound = Loadable({
+export const NotFound = Loadable({
   loader: () => import('@/components/NotFound'),
-  loading: () => {},
+  loading: Loading,
 })
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory({
+  basename: basename,
+})
+history.listen(({location, action}) => {
+  console.log(
+    `The current URL is ${location.pathname}${location.search}${location.hash}`
+  );
+  console.log(`The last navigation action was ${action}`);
+});
 
 export const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: basename + '/home',
   },
   {
-    path: '/home',
+    path: basename + '/home',
     component: Home,
   },
   {
-    path: '/discovery',
+    path: basename + '/discovery',
     component: Discovery,
   },
   {
-    path: '/order',
+    path: basename + '/order',
     component: Order,
   },
   {
-    path: '/mine',
+    path: basename + '/mine',
     component: Mine,
   },
   {

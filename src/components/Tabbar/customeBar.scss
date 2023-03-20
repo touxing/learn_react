@@ -1,0 +1,13 @@
+.tabbar-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  .tabbar-item {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

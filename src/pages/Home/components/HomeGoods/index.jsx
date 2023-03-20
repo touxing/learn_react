@@ -38,11 +38,9 @@ export default class HomeGoods extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('componentDidMount')
     this.getMacy(0)
   }
   componentDidUpdate() {
-    console.log('componentDidUpdate')
     let { masonryMap, currentTabIndex } = this.state
     setTimeout(() => {
       if (masonryMap.has(currentTabIndex)) {
@@ -55,7 +53,6 @@ export default class HomeGoods extends React.Component {
   //   return false
   // }
   componentWillUnmount() {
-    console.log('componentWillUnmount')
   }
   screenChange = () => {
     console.log('screenChange')

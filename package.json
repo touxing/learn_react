@@ -2,9 +2,10 @@
   "name": "meituan",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://touxing.github.io/learn_react/",
+  "homepage": "https://touxing.github.io/",
   "scripts": {
     "start": "react-app-rewired --openssl-legacy-provider start",
+    "predeploy": "pnpm build",
     "build": "react-app-rewired --openssl-legacy-provider build",
     "test": "react-app-rewired --openssl-legacy-provider test --env=jsdom",
     "deploy": "gh-pages -b master -d build",
