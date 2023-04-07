@@ -1,14 +1,13 @@
 /* eslint-disable */
 import React, { Children } from 'react'
 import { TabBar } from 'antd-mobile'
-import { Route, Redirect, Switch } from 'react-router'
-import { routes, basename, history } from '@/routes'
+import { Route, withRouter} from 'react-router-dom'
 
 const pathMap = new Map()
-pathMap.set('home', `${basename}/home`)
-pathMap.set('discovery', basename + '/discovery')
-pathMap.set('order', basename + '/order')
-pathMap.set('mine', basename + '/mine')
+pathMap.set('home', `/home`)
+pathMap.set('discovery', '/discovery')
+pathMap.set('order', '/order')
+pathMap.set('mine', '/mine')
 
 // 首页的tabbar不超过4个还是直接用html组件方便，
 // 如果需要每个特殊处理，new dot，数据渲染要做更多判断，操作更多
@@ -147,4 +146,4 @@ class Tabbar extends React.Component {
   }
 }
 
-export default Tabbar
+export default withRouter(Tabbar)

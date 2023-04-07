@@ -1,14 +1,13 @@
-/* eslint-disable */
-import React, { Children } from 'react'
+import React from 'react'
 import { TabBar } from 'antd-mobile'
-import { Route, Redirect, Switch, withRouter } from 'react-router'
-import { routes, basename, history } from '@/routes'
+import { withRouter } from 'react-router-dom'
+import './tabbarNoContent.scss'
 
 const pathMap = new Map()
-pathMap.set('home', `${basename}/home`)
-pathMap.set('discovery', basename + '/discovery')
-pathMap.set('order', basename + '/order')
-pathMap.set('mine', basename + '/mine')
+pathMap.set('home', `/home`)
+pathMap.set('discovery', '/discovery')
+pathMap.set('order', '/order')
+pathMap.set('mine', '/mine')
 
 // 首页的tabbar不超过4个还是直接用html组件方便，
 // 如果需要每个特殊处理，new dot，数据渲染要做更多判断，操作更多
@@ -32,16 +31,16 @@ const tabBarList = [
   {
     title: '订单',
     path: pathMap.get('order'),
-    icon: 'https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg',
+    icon: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg',
     selectedIcon:
-      'https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg',
+      'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg',
   },
   {
     title: '我的',
     path: pathMap.get('mine'),
-    icon: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg',
+    icon: 'https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg',
     selectedIcon:
-      'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg',
+      'https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg',
   },
 ]
 
@@ -49,7 +48,7 @@ class Tabbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedPath: history.location.pathname || pathMap.get('home'),
+      selectedPath: props.history.location.pathname || pathMap.get('home'),
       hidden: false,
       fullScreen: false,
     }
@@ -70,19 +69,20 @@ class Tabbar extends React.Component {
     )
   }
   handleBadge(path) {
+    let result = null
     switch (path) {
       case pathMap.get('discovery'):
-        return 'new'
+        result = 'new'
         break
       case pathMap.get('order'):
-        return 1
+        result = 1
         break
       case pathMap.get('mine'):
         break
       default:
         break
     }
-    return null
+    return result
   }
   tabbarComponent(item) {
     return (
@@ -97,7 +97,7 @@ class Tabbar extends React.Component {
           this.setState({
             selectedPath: item.path,
           })
-          history.replace(item.path)
+          this.props.history.replace(item.path)
         }}
         data-seed={item.seed}
       >
@@ -108,7 +108,7 @@ class Tabbar extends React.Component {
 
   render() {
     return (
-      <div className={this.state.fullScreen ? 'fullScreen' : 'auto'}>
+      <div className="tabbar-wrapper">
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
@@ -125,4 +125,4 @@ class Tabbar extends React.Component {
   }
 }
 
-export default Tabbar
+export default withRouter(Tabbar)

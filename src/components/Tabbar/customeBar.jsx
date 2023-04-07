@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import './customeBar.scss'
 
-export default function Tabbar(props) {
+function Tabbar(props) {
   const history = useHistory()
 
   function handleUrl(url) {
@@ -13,17 +13,19 @@ export default function Tabbar(props) {
   return (
     <div className="tabbar-wrap">
       <div className="tabbar-item" onClick={() => handleUrl('/home')}>
-        a
+        首页
       </div>
       <div className="tabbar-item" onClick={() => handleUrl('/discorvery')}>
-        b
+        发现
       </div>
       <div className="tabbar-item" onClick={() => handleUrl('/order')}>
-        c
+        订单
       </div>
       <div className="tabbar-item" onClick={() => handleUrl('/mine')}>
-        d
+        我的
       </div>
     </div>
   )
 }
+
+export default Tabbar

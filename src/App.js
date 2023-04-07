@@ -1,21 +1,12 @@
 /* eslint-disable */
+import {history,routes} from '@/routes'
 import React from 'react'
-import { Router } from 'react-router-dom'
-import { Switch, Route, Redirect } from 'react-router'
-import {
-  history,
-  routes,
-  basename,
-  Home,
-  Discovery,
-  Order,
-  Mine,
-} from '@/routes'
+import {Redirect,Route,Router,Switch} from 'react-router-dom'
 
-import './scss/reset.scss'
-import './scss/common.scss'
 import './App.scss'
-import CustomeBar from './components/Tabbar/customeBar'
+import Tabbar from './components/Tabbar/tabbarNoContent'
+import './scss/common.scss'
+import './scss/reset.scss'
 
 function getRouterByRoutes(routes) {
   const renderedRoutesList = []
@@ -55,9 +46,11 @@ function getRouterByRoutes(routes) {
 class App extends React.Component {
   render() {
     return (
-      <Router basename={basename} history={history}>
+      // <BrowserRouter basename={basename}></BrowserRouter>
+      <Router history={history}>
         <Switch>{getRouterByRoutes(routes)}</Switch>
-        <CustomeBar></CustomeBar>
+        {/* <CustomeBar></CustomeBar> */}
+        <Tabbar />
       </Router>
     )
   }
