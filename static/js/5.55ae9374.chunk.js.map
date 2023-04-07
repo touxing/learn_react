@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/NotFound/index.jsx"],"names":["React","createElement"],"mappings":"oGAAA,2BAEe,qBACb,OACEA,IAAAC,cAAA,WAAK","file":"static/js/5.55ae9374.chunk.js","sourcesContent":["import React from 'react'\n\nexport default function() {\n  return (\n    <div>404</div>\n  )\n}\n"],"sourceRoot":""}
