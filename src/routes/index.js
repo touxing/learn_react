@@ -6,7 +6,6 @@ export const isDev = process.env.NODE_ENV === 'development'
 
 export let basename = process.env.PUBLIC_URL
 console.log(`🚀 ~ file: index.js:6 ~ basename:`, basename)
-console.log(process.env.NODE_ENV)
 
 export const Home = Loadable({
   loader: () => import('@/pages/Home'),
