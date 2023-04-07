@@ -2,8 +2,11 @@ import Loadable from 'react-loadable'
 import { createBrowserHistory } from 'history'
 import Loading from '@/components/Loading'
 
+export const isDev = process.env.NODE_ENV === 'development'
+
 export let basename = process.env.PUBLIC_URL
 console.log(`🚀 ~ file: index.js:6 ~ basename:`, basename)
+console.log(process.env.NODE_ENV)
 
 export const Home = Loadable({
   loader: () => import('@/pages/Home'),
@@ -27,34 +30,35 @@ export const NotFound = Loadable({
 })
 
 export const history = createBrowserHistory({
-  basename: basename,
+  basename,
 })
-history.listen(({location, action}) => {
+console.log(history)
+history.listen((location, action) => {
   console.log(
     `The current URL is ${location.pathname}${location.search}${location.hash}`
-  );
-  console.log(`The last navigation action was ${action}`);
-});
+  )
+  console.log(`The last navigation action was ${action}`)
+})
 
 export const routes = [
   {
     path: '/',
-    redirect: basename + '/home',
+    redirect: '/home',
   },
   {
-    path: basename + '/home',
+    path: '/home',
     component: Home,
   },
   {
-    path: basename + '/discovery',
+    path: '/discovery',
     component: Discovery,
   },
   {
-    path: basename + '/order',
+    path: '/order',
     component: Order,
   },
   {
-    path: basename + '/mine',
+    path: '/mine',
     component: Mine,
   },
   {

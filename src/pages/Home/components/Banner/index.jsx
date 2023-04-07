@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SwiperCore, { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { getUrlWithBasename } from '@/utils'
 
 import './index.scss'
 SwiperCore.use([Pagination])
@@ -9,11 +10,11 @@ SwiperCore.use([Pagination])
 export default function () {
   const banners = [
     {
-      img: '/img/banner1.jpg',
+      img: getUrlWithBasename('/img/banner1.jpg'),
       link: '/',
     },
     {
-      img: '/img/banner2.jpg',
+      img: getUrlWithBasename('/img/banner2.jpg'),
       link: '/discovery',
     },
   ]

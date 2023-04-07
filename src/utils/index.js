@@ -1,3 +1,4 @@
+import {basename} from '@/routes'
 
 export function getClient() {
   return {
@@ -51,4 +52,14 @@ export function throttled(fn, wait = 300, immediate=false) {
       }, Math.max(wait - (Date.now() - lastTime), 0))
     }
   }
+}
+
+/**
+ * 获取带basename的url
+ * @param {string} url
+ * @returns
+ */
+export function getUrlWithBasename(url) {
+  return `${basename ? basename+'/' : ''}${url}`
+
 }
